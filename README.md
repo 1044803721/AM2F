@@ -10,3 +10,9 @@ AM2F.py in the models folder is the main program structure
 The modules folder contains residual network programs.
 
 requirements.txt is the installation environment.
+
+config.ymal is a configuration parameter.
+
+metrics.py is generate Mixed Food Matrix.
+
+
