@@ -1,4 +1,7 @@
 # AM2F
+
+AM2F is a multimodal fusion method
+
 Running Python run.py will generate an attention.h5 file after completion
 Visualizing the Mixed Matrix of Model Training Results: Python metrics.py
 
