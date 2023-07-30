@@ -53,7 +53,7 @@ class AM2F:
                       metrics=['accuracy'])
 
         return model
-
+# MLP layer
     def mlp_layer(self, lstm):
         fc = Dense(self.fc_args[0], activation='relu', kernel_initializer='truncated_normal')(lstm)
         fc = Dropout(self.dropout_args)(fc)
@@ -72,13 +72,13 @@ class AM2F:
         dense2 = Dense(self.attention_args[1], activation="softmax")(dense1)
         lstm = multiply([lstm, dense2])
         return lstm
-
+# LSTM layer
     def lstm_layer(self, all_resnet):
         lstm = LSTM(self.lstm_args[0], input_shape=(self.lstm_args[1], self.lstm_args[2]), activation='tanh',
                     dropout=self.dropout_args, recurrent_dropout=self.dropout_args)(all_resnet)
         print(lstm,"@@@")
         return lstm
-
+# AM2F merged
     def cnn_layer(self, gyr_x_cnn, gyr_y_cnn, gyr_z_cnn, lacc_x_cnn, lacc_y_cnn, lacc_z_cnn, mag_x_cnn, mag_y_cnn,
                   mag_z_cnn, pressure_cnn):
         get_lambda2 = lambda x: MCB(x[0], x[1])
@@ -164,7 +164,7 @@ class AM2F:
             [concat_lacc_resnet, concat_gyr_resnet, concat_mag_resnet, concat_pressure_resnet])
         print(all_resnet)
         return all_resnet
-
+# residual layer
     def residual_layer(self, gyr_x, gyr_y, gyr_z, lacc_x, lacc_y, lacc_z, mag_x, mag_y, mag_z, pressure):
         lacc_x_cnn = resnet.res_net(lacc_x, "single_lacc_x", self.resnet_args)
         lacc_y_cnn = resnet.res_net(lacc_y, "single_lacc_y", self.resnet_args)
@@ -177,7 +177,7 @@ class AM2F:
         mag_z_cnn = resnet.res_net(mag_z, "single_mag_z", self.resnet_args)
         pressure_cnn = resnet.res_net(pressure, "single_pressure", self.resnet_args)
         return gyr_x_cnn, gyr_y_cnn, gyr_z_cnn, lacc_x_cnn, lacc_y_cnn, lacc_z_cnn, mag_x_cnn, mag_y_cnn, mag_z_cnn, pressure_cnn
-
+# input
     def input_layer(self):
         lacc_x = Input(shape=(self.window_size, 1),
                        dtype='float32', name='laccx_input')
