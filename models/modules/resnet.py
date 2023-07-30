@@ -2,7 +2,7 @@ from keras import layers
 from keras.layers import Activation, Conv1D, \
     MaxPooling1D
 
-
+# convolutional_block
 def convolutional_block(X, f, filters, kernel_sizes, stride, net_id):
     conv_name_base = 'res_' + net_id + "_" + str(2) + 'a' + '_branch'
 
