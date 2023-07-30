@@ -54,11 +54,7 @@ def MCB(bottom1, bottom2, output_dim=128,
     bottom1_flat = tf.reshape(bottom1, [-1, input_dim1])
     bottom2_flat = tf.reshape(bottom2, [-1, input_dim2])
 
-    #   sketch1 = bottom1 * sparse_sketch_matrix
-    #   sketch2 = bottom2 * sparse_sketch_matrix
-    # But tensorflow only supports left multiplying a sparse matrix, so:
-    #   sketch1 = (sparse_sketch_matrix.T * bottom1.T).T
-    #   sketch2 = (sparse_sketch_matrix.T * bottom2.T).T
+
     sketch1 = tf.transpose(tf.sparse_tensor_dense_matmul(sparse_sketch_matrix1,
         bottom1_flat, adjoint_a=True, adjoint_b=True))
     sketch2 = tf.transpose(tf.sparse_tensor_dense_matmul(sparse_sketch_matrix2,
