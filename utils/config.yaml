@@ -1,0 +1,29 @@
+mode: train
+train_args:
+  device: 0
+  epoch: 512
+  batch_size: 96
+  window_size: 50
+  lr: 0.01
+  model_name: attention_gg.h5
+  model: AM2F
+  datatype: SHL
+  train_path: D:\\pythonProject\\AM2F\\datatrain.npz
+  validate_path: D:\\pythonProject\\AM2F\\datatest.npz
+  model_args:
+    cnn: [32, 3]
+    lstm: [128, 36, 128]
+    attention: [128, 128]
+    fc: [128, 256, 512, 1024, 4]
+    dropout: 0.2
+    resnet:
+      f: 3
+      filters: [64, 128, 128, 128]
+      kernel_sizes: [3, 2, 2, 4]
+      s: 4
+      p: 2
+
+
+
+
+

@@ -201,4 +201,3 @@ class AM2F:
                          dtype='float32', name='pres_input')
         return gyr_x, gyr_y, gyr_z, lacc_x, lacc_y, lacc_z, mag_x, mag_y, mag_z, pressure
 
-
