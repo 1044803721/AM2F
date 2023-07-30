@@ -54,7 +54,7 @@ class Trainer:
         config.gpu_options.allow_growth = True
         sess=tf.compat.v1.Session(config=config)
         tf.compat.v1.keras.backend.set_session(sess)
-
+# load data
     def _load_data(self, train_path, validate_path):
         train_data = np.load(train_path)
         test_data = np.load(validate_path)
@@ -138,7 +138,7 @@ class Trainer:
                                  {'output': self.test_y})
             )
 
-
+# data description 
     def _initial_shl_dataset(self, test_x, train_x):
         self.gyr_x = train_x[:, :, 3:4]
         self.gyr_y = train_x[:, :, 4:5]
