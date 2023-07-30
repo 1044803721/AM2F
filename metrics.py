@@ -7,11 +7,10 @@ import sklearn.metrics as sm
 import yaml
 from keras.models import load_model
 import matplotlib.pyplot as plt
-# 加载数据
 from utils import Trainer, Parser
 from visual import plot_confusion_matrix
 
-
+# load data
 test_data = np.load("D:\\pythonProject\\AM2F\\datatest.npz")
 test_x = test_data["x"]
 test_y = test_data["y"]
@@ -28,7 +27,7 @@ if pargs.config is not None:
             assert (k in key)
     parser.parser.set_defaults(**default_arg)
 args = parser.parser.parse_args()
-print("参数:", pargs)
+print("parameter:", pargs)
 mode = args.mode
 trainer = Trainer(args.train_args)
 batch_size, data_type, device_id, epoch, model_name, train_path, validate_path, window_size = trainer._read_args(trainer.train_args)
@@ -92,11 +91,6 @@ def MCB(bottom1, bottom2, output_dim=128,
     bottom1_flat = tf.reshape(bottom1, [-1, input_dim1])
     bottom2_flat = tf.reshape(bottom2, [-1, input_dim2])
 
-    #   sketch1 = bottom1 * sparse_sketch_matrix
-    #   sketch2 = bottom2 * sparse_sketch_matrix
-    # But tensorflow only supports left multiplying a sparse matrix, so:
-    #   sketch1 = (sparse_sketch_matrix.T * bottom1.T).T
-    #   sketch2 = (sparse_sketch_matrix.T * bottom2.T).T
     sketch1 = tf.transpose(tf.sparse_tensor_dense_matmul(sparse_sketch_matrix1,
         bottom1_flat, adjoint_a=True, adjoint_b=True))
     sketch2 = tf.transpose(tf.sparse_tensor_dense_matmul(sparse_sketch_matrix2,
@@ -134,17 +128,17 @@ result_prob = model.predict({'gyrx_input': trainer.gyr_x_v,
 
                          })
 y_predict = np.argmax(result_prob, axis=-1)
-print("预测", y_predict)
+print("prediction", y_predict)
 test_y = np.argmax(test_y, axis=-1)
-print("真实", test_y)
+print("true", test_y)
 
 cm = sm.confusion_matrix(test_y, y_predict)
 sub_matrix = cm[:3, :3]
 plot_confusion_matrix(sub_matrix, ['0'])
-print("---------------混淆矩阵\n", sub_matrix)
+print("---------------confusion matrix\n", sub_matrix)
 
 cp = sm.classification_report(test_y, y_predict,digits=4)
-print("---------------分类报告\n", cp)
+print("---------------Classification report\n", cp)
 acc = np.sum(y_predict == test_y) / test_y.size
 print(acc)
 
