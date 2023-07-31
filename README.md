@@ -2,7 +2,9 @@
 
 AM2F (Attentional Multi-Modal Perceptual Feature Fusion)
 
-#Basic requirements
+# Basic environments
+
+
 Running Python run.py will generate an attention.h5 file after completion
 Visualizing the Mixed Matrix of Model Training Results: Python metrics.py
 
