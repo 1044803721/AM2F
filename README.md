@@ -25,14 +25,16 @@ Vehicle Recognition dataset
 Running Python run.py will generate an attention.h5 file after completion
 Visualizing the Mixed Matrix of Model Training Results: Python metrics.py
 
-AM2F.py in the models folder is the main program structure
+AM2F.py 
+#in the models folder is the main program structure
 
-The modules folder contains residual network programs.
+requirements.txt 
+#this is the installation environment.
 
-requirements.txt is the installation environment.
+config.ymal 
+#this is a configuration parameter.
 
-config.ymal is a configuration parameter.
-
-metrics.py is generate Mixed Food Matrix.
+metrics.py
+#this is generate Mixed Food Matrix.
 
 
