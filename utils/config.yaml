@@ -1,15 +1,15 @@
 mode: train
 train_args:
   device: 0
-  epoch: 512
-  batch_size: 96
-  window_size: 50
-  lr: 0.01
+  epoch: 600
+  batch_size: 512
+  window_size: 300
+  lr: 0.001
   model_name: attention_gg.h5
   model: AM2F
   datatype: SHL
-  train_path: D:\\pythonProject\\AM2F\\datatrain.npz
-  validate_path: D:\\pythonProject\\AM2F\\datatest.npz
+  train_path: ./AM2F/datatrain.npz
+  validate_path: ./AM2F/datatest.npz
   model_args:
     cnn: [32, 1]
     lstm: [128, 36, 128]
