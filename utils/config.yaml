@@ -11,7 +11,7 @@ train_args:
   train_path: D:\\pythonProject\\AM2F\\datatrain.npz
   validate_path: D:\\pythonProject\\AM2F\\datatest.npz
   model_args:
-    cnn: [32, 3]
+    cnn: [32, 1]
     lstm: [128, 36, 128]
     attention: [128, 128]
     fc: [128, 256, 512, 1024, 4]
